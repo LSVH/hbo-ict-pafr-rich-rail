@@ -29,6 +29,8 @@ _figuur 1: Een simpele versie van het klassendiagram_
 <p>
   
 ```plantuml:simpel-klassendiagram
+skinparam monochrome true
+
 class Train {
   - name: string
   + getComponents(): Components[]
