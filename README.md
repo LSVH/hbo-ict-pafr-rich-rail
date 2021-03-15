@@ -21,7 +21,12 @@ Een applicatie waarmee treinen en de trein componenten mee beheert kunnen worden
 
 In figuur 1 is een simpele versie van het klassendiagram van de applicatie weergeven.
 
-@startuml
+![figuur 1](./docs/assets/simpel-klassendiagram.svg)
+_figuur 1: Een simpele versie van het klassendiagram_
+
+<details><summary>Bekijk de broncode van figuur 1</summary>
+<p>
+```plantuml:simpel-klassendiagram
 class Train {
   - name: string
   + getComponents(): Components[]
@@ -45,4 +50,6 @@ class Component {
 
 Train --> Component: - components: Components[]
 Component --> Type: - type: Type
-@enduml
+```
+</p>
+</details>
