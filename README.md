@@ -29,7 +29,7 @@ _figuur 1: Een simpele versie van het klassendiagram_
 <p>
   
 ```plantuml:simpel-klassendiagram
-skinparam backgroundColor #FFFFFF
+skinparam monochrome reverse
 
 class Train {
   - name: string
