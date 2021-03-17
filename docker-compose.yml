@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    image: maven:3-openjdk-17
+    container_name: app
+    working_dir: /usr/src/rich-rail
+    volumes:
+      - .:/usr/src/rich-rail
+      - ./.m2:/root/.m2
+  db:
+    image: postgres:13-alpine
+    container_name: db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - ./structure.sql:/docker-entrypoint-initdb.d/structure.sql
