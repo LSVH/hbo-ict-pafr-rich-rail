@@ -33,6 +33,7 @@ skinparam monochrome reverse
 
 class Train {
   - name: string
+  + getName(): string
   + getComponents(): Components[]
   + addComponent(Component c): void
   + removeComponent(Component c): void
@@ -42,6 +43,7 @@ class Type {
   - name: string
   - numberOfSeats: int
   - payloadCapacity: int
+  + getName(): string
   + getNumberOfSeats(): int
   + getPayloadCapacity(): int
 }

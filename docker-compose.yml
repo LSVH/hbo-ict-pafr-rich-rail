@@ -2,18 +2,27 @@ version: "3"
 
 services:
   app:
-    image: maven:3-openjdk-17
+    image: maven:3-openjdk-15
     container_name: app
-    working_dir: /usr/src/rich-rail
+    # depends_on:
+    #   - db
+    environment:
+      DB_NAME: ${DB_NAME:-richrail}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASS: ${DB_PASS:-secret123}
+      DB_DRIVER: ${SPRING_DRIVER:-org.postgresql.Driver}
+      DB_URL: ${SPRING_DB_URL:-jdbc:postgresql://db:5432}
     volumes:
       - .:/usr/src/rich-rail
-      - ./.m2:/root/.m2
+      - ./.docker/app/cache:/root/.m2
+    working_dir: /usr/src/rich-rail
   db:
     image: postgres:13-alpine
     container_name: db
     environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME:-richrail}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASS:-secret123}
     volumes:
       - ./structure.sql:/docker-entrypoint-initdb.d/structure.sql
+      - ./.docker/db/data:/var/lib/postgresql/data

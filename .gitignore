@@ -33,4 +33,7 @@ build/
 .vscode/
 
 ### Docker ###
-.m2/
+.docker/
+
+### Project ###
+.env
