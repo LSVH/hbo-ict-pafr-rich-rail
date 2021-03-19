@@ -4,8 +4,9 @@ services:
   app:
     image: maven:3-openjdk-15
     container_name: app
-    # depends_on:
-    #   - db
+    command: mvn spring-boot:run
+    depends_on:
+      - db
     environment:
       DB_NAME: ${DB_NAME:-richrail}
       DB_USER: ${DB_USER:-postgres}
