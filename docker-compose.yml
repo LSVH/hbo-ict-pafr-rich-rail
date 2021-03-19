@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    image: maven:3-openjdk-15
+    image: maven:3-jdk-8-slim
     container_name: app
     command: mvn spring-boot:run
     depends_on:
