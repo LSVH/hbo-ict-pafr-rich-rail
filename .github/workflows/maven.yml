@@ -39,7 +39,7 @@ jobs:
     - name: Build, Test and Deploy with Maven
       run: mvn --batch-mode deploy
       env:
-        DB_URL: jdbc:postgresql://db:5432
+        DB_URL: jdbc:postgresql://localhost:5432
         DB_DRIVER: org.postgresql.Driver
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
