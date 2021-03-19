@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_FILE" value="${LOG_FILE_PATH:-target/logs}/${LOG_FILE_NAME:-app.log}"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+
+    <appender name="HTTP" class="ch.qos.logback.classic.net.SocketAppender">
+        <remoteHost>${LOG_HTTP_HOST:-localhost}</remoteHost>
+        <port>${LOG_HTTP_PORT:-80}</port>
+    </appender>
+
+    <!-- <appender name="HTTPS" class="ch.qos.logback.classic.net.SSLSocketAppender">
+        <remoteHost>${LOG_HTTPS_HOST:-localhost}</remoteHost>
+        <port>${LOG_HTTPS_PORT:-443}</port>
+        <ssl>
+            <trustStore>
+                <type>${LOG_HTTPS_TS_TYPE:-jks}</type>
+                <location>${LOG_HTTPS_TS_LOCATION}</location>
+                <password>${LOG_HTTPS_TS_PASSWORD}</password>
+            </trustStore>
+        </ssl>
+    </appender> -->
+
+    <!-- <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <smtpHost>${LOG_EMAIL_SMTP_HOST:-localhost}</smtpHost>
+        <smtpPort>${LOG_EMAIL_SMTP_PORT:-587}</smtpPort>
+        <STARTTLS>${LOG_EMAIL_SMTP_STARTTLS:-true}</STARTTLS>
+        <username>${LOG_EMAIL_SMTP_USER}</username>
+        <password>${LOG_EMAIL_SMTP_PASS}</password>
+        <from>${LOG_EMAIL_SENDER_EMAIL:-${LOG_EMAIL_SMTP_USER}}</from>
+        <to>${LOG_EMAIL_RECIPIENT}</to>
+        <subject>Rich Rail: %logger{20} - %msg</subject>
+        <layout class="ch.qos.logback.classic.html.HTMLLayout" />
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </layout>
+    </appender> -->
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <!-- Uncomment below to send logs to a file with the FileAppender -->
+        <!-- <appender-ref ref="FILE" /> -->
+        <!-- Uncomment below to send logs over HTTP with the SocketAppender -->
+        <!-- <appender-ref ref="HTTP" /> -->
+        <!-- Uncomment below to send logs over HTTPS with the SSLSocketAppender -->
+        <!-- <appender-ref ref="HTTPS" /> -->
+        <!-- Uncomment below to send logs via Email with the SMTPAppender -->
+        <!-- <appender-ref ref="EMAIL" /> -->
+    </root>
+
+    <logger name="nl.vhoudt.luuk.richrail" level="DEBUG">
+        <!-- Appenders can also be added here, but will only contain logs in the richrail package -->
+        <appender-ref ref="FILE" />
+    </logger>
+</configuration>
