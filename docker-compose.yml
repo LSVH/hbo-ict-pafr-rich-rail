@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    image: maven:3-jdk-8-slim
+    image: maven:3-openjdk-15-slim
     container_name: app
     command: mvn spring-boot:run
     depends_on:
@@ -13,8 +13,12 @@ services:
       DB_PASS: ${DB_PASS:-secret123}
       DB_DRIVER: ${SPRING_DRIVER:-org.postgresql.Driver}
       DB_URL: ${SPRING_DB_URL:-jdbc:postgresql://db:5432}
+    ports: 
+      - 8080:8080
     volumes:
-      - .:/usr/src/rich-rail
+      - ./src:/usr/src/rich-rail/src
+      - ./pom.xml:/usr/src/rich-rail/pom.xml
+      - ./.docker/app/target:/usr/src/rich-rail/target
       - ./.docker/app/cache:/root/.m2
     working_dir: /usr/src/rich-rail
   db:
@@ -25,5 +29,5 @@ services:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASS:-secret123}
     volumes:
-      - ./structure.sql:/docker-entrypoint-initdb.d/structure.sql
+      - ./sql:/docker-entrypoint-initdb.d
       - ./.docker/db/data:/var/lib/postgresql/data

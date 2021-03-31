@@ -12,24 +12,22 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.AccessLevel;
 
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
-@Log4j2
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor = @__(@PersistenceConstructor))
 @Entity
-@Table(name = Train.TABLE_NAME)
-public class Train extends BaseEntity {
-    public static final String TABLE_NAME = "trains";
+@Table(name = TypeAttributeKey.TABLE_NAME)
+public class TypeAttributeKey extends BaseEntity {
+    public static final String TABLE_NAME = "type_attribute_keys";
 
     @NonNull
     @Getter
@@ -38,16 +36,11 @@ public class Train extends BaseEntity {
 
     @Getter
     @JsonManagedReference
-    @OneToMany(mappedBy = "train")
-    protected List<Component> components = new ArrayList<Component>();
+    @OneToMany(mappedBy = "key")
+    private List<TypeAttribute> attributes = new ArrayList<TypeAttribute>();
 
-    public void addComponent(Component component) {
-        this.components.add(component);
-        log.info("A component was added to the train: \"" + this.getTitle() + "\".");
-    }
-
-    public void removeComponent(Component component) {
-        this.components.remove(component);
-        log.info("A component was removed from the train: \"" + this.getTitle() + "\".");
+    @Override
+    public String toString() {
+        return this.title;
     }
 }

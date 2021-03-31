@@ -32,30 +32,53 @@ _figuur 1: Een simpele versie van het klassendiagram_
 skinparam monochrome reverse
 
 class Train {
-  - name: string
-  + getName(): string
+  - title: string
+  + getTitle(): string
   + getComponents(): Components[]
   + addComponent(Component c): void
   + removeComponent(Component c): void
 }
 
 class Type {
-  - name: string
+  - title: string
   - numberOfSeats: int
   - payloadCapacity: int
-  + getName(): string
-  + getNumberOfSeats(): int
-  + getPayloadCapacity(): int
+  + getTitle(): string
+  + getComponents(): Component[]
+  + addComponent(Component c): void
+  + removeComponent(Component c): void
+  + getAttributes(): TypeAttribute[]
+  + addAttribute(TypeAttribute c): void
+  + removeAttribute(TypeAttribute c): void
+}
+
+class TypeAttribute {
+  - value: string
+  - type: Type
+  - key: TypeAttributeKey
+  + getValue(): string
+  + getType(): Type
+  + getKey(): TypeAttributeKey
+}
+
+class TypeAttributeKey {
+  - title: string
+  - attributes: Attributes[]
+  + getTitle(): string
+  + getAttributes(): Attributes[]
 }
 
 class Component {
-  - order: int
-  + getOrder(): int
+  - spot: int
+  + getSpot(): int
+  + getTrain(): Train
   + getType(): Type
 }
 
 Train --> Component: - components: Components[]
 Component --> Type: - type: Type
+Type --> TypeAttribute: - attributes: Attributes[]
+TypeAttributeKey --> TypeAttribute: - attributes: Attributes[]
 ```
 
 </p>
