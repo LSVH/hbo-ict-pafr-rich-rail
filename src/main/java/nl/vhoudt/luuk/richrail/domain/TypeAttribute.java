@@ -10,37 +10,42 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.AccessLevel;
 
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor = @__(@PersistenceConstructor))
 @Entity
-@Table(name = Component.TABLE_NAME)
-public class Component extends BaseEntity {
-    public static final String TABLE_NAME = "components";
+@Table(name = TypeAttribute.TABLE_NAME)
+public class TypeAttribute extends BaseEntity {
+    public static final String TABLE_NAME = "type_attributes";
 
     @NonNull
     @Getter
-    @Column(name = "spot")
-    private Integer spot;
-
-    @NonNull
-    @Getter
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "train_id")
-    private Train train;
-
+    @Column(name = "val")
+    private String value;
+    
     @NonNull
     @Getter
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
+
+    @NonNull
+    @Getter
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "key_id")
+    private TypeAttributeKey key;
+
+    @Override
+    public String toString() {
+        return this.value;
+    }
 }
