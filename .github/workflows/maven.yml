@@ -30,8 +30,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup DB service
       run: |
-        psql -h $DB_HOST -d $DB_NAME -U $DB_USER -a -f sql/*.sql
+        for f in "$SQL_PATH"; do
+          psql -h "$DB_HOST" -d "$DB_NAME" -U "$DB_USER" -a -f "$f"
+        done
       env:
+        SQL_PATH: sql/*.sql
         DB_HOST: localhost
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
