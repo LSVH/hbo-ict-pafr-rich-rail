@@ -30,7 +30,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup DB service
       run: |
-        pgsql -d $DB_NAME -U $DB_USER -a -f sql/*.sql
+        psql -d $DB_NAME -U $DB_USER -a -f sql/*.sql
       env:
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
