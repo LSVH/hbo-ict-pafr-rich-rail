@@ -4,12 +4,12 @@ Een applicatie waarmee treinen en de trein componenten mee beheert kunnen worden
 
 ## Functionaliteiten
 
-- [ ] Treinen kunnen in verschillende interfaces getoond worden. Bijvoorbeeld in een GUI en/of CLI.
-- [ ] Logs kunnen op verschillende manieren weg worden geschreven. Bijvoorbeeld naar een bestand en/of naar een externe service.
-- [ ] Nieuwe treinen toevoegen.
-- [ ] Een trein weergeven.
-- [ ] Een trein inladen.
-- [ ] Bestaande treinen verwijderen.
+- [x] Treinen kunnen in verschillende interfaces getoond worden. Bijvoorbeeld in een GUI en/of CLI.
+- [x] Logs kunnen op verschillende manieren weg worden geschreven. Bijvoorbeeld naar een bestand en/of naar een externe service.
+- [x] Nieuwe treinen toevoegen.
+- [x] Een trein weergeven.
+- [x] Een trein inladen.
+- [x] Bestaande treinen verwijderen.
 - [ ] Een nieuw component type toevoegen.
 - [ ] Een nieuw component aanmaken op basis van een bepaald component type.
 - [ ] Een component kan gekoppeld worden aan een trein.
