@@ -30,7 +30,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup DB service
       run: |
-        for f in "$SQL_PATH"; do
+        for f in ls "$SQL_PATH"; do
           psql -h "$DB_HOST" -d "$DB_NAME" -U "$DB_USER" -a -f "$f"
         done
       env:
