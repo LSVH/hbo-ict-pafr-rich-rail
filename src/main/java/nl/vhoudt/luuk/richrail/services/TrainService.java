@@ -2,6 +2,7 @@ package nl.vhoudt.luuk.richrail.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,15 @@ public class TrainService {
         return trains;
     }
 
+    public Optional<Train> findById(Integer id) {
+        return repository.findById(id);
+    }
+
     public Train save(Train entity) {
         return repository.save(entity);
+    }
+
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
     }
 }

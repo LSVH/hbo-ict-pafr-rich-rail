@@ -43,7 +43,7 @@ public class TrainServiceTest {
         verify(repository, times(1)).findAll();
     }
 
-    // @Test
+    @Test
     void canSave() throws Exception {
         Train expected = new Train("foo");
 
@@ -53,5 +53,11 @@ public class TrainServiceTest {
 
         assertEquals(expected, actual);
         verify(repository, times(1)).save(expected);
+    }
+
+    @Test
+    void canDeleteById() throws Exception {
+        service.deleteById(1);
+        verify(repository, times(1)).deleteById(1);
     }
 }
