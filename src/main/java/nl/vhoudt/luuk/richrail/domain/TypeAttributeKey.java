@@ -8,17 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.AccessLevel;
-
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
 @NoArgsConstructor
@@ -35,9 +34,9 @@ public class TypeAttributeKey extends BaseEntity {
     private String title;
 
     @Getter
-    @JsonManagedReference
     @OneToMany(mappedBy = "key")
-    private List<TypeAttribute> attributes = new ArrayList<TypeAttribute>();
+    @JsonIgnore
+    private List<TypeAttribute> attributes = new ArrayList<>();
 
     @Override
     public String toString() {
