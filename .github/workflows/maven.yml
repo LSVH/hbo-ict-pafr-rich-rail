@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     services:
@@ -30,9 +29,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup DB service
       run: |
-        for f in "$GITHUB_WORKSPACE/$SQL_PATH"; do
-          psql -h "$DB_HOST" -d "$DB_NAME" -U "$DB_USER" -a -f "$f"
-        done
+        ls -al "$GITHUB_WORKSPACE"
       env:
         SQL_PATH: sql/*.sql
         DB_HOST: localhost
