@@ -47,18 +47,12 @@ public class TrainControllerTest {
     }
 
     @Test
-    Integer canCreate() throws Exception {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        JSONObject expected = new JSONObject().put("title", "foo");
-        HttpEntity<String> request = new HttpEntity<>(expected.toString(), headers);
+    void canCreate() throws Exception {
+        String expected = "foo";
+        JSONObject actual = this.createDummyTrain(expected);
 
-        JSONObject actual = new JSONObject(restTemplate.postForEntity(this.url, request, String.class).getBody());
-
-        assertEquals(expected.get("title"), actual.get("title"));
+        assertEquals(expected, actual.get("title"));
         assertNotNull(actual.get("id"));
-
-        return (Integer) actual.get("id");
     }
 
     @Test
@@ -71,7 +65,7 @@ public class TrainControllerTest {
 
     @Test
     void canDelete() throws Exception {
-        Integer id = this.canCreate();
+        Integer id = (Integer) this.createDummyTrain("foo").get("id");
 
         String beforeDelete = restTemplate.getForEntity(this.url + "/"+ id, String.class).getBody();
         assertEquals(id, new JSONObject(beforeDelete).get("id"));
@@ -82,5 +76,14 @@ public class TrainControllerTest {
         assertThrows(JSONException.class, () -> {
             new JSONObject(afterDelete);
         });
+    }
+
+    private JSONObject createDummyTrain(String title) throws Exception {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        JSONObject expected = new JSONObject().put("title", title);
+        HttpEntity<String> request = new HttpEntity<>(expected.toString(), headers);
+
+        return new JSONObject(restTemplate.postForEntity(this.url, request, String.class).getBody());
     }
 }
