@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
@@ -19,13 +21,13 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
 @Log4j2
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor = @__(@PersistenceConstructor))
+@JsonIdentityInfo(generator = PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = Type.TABLE_NAME)
 public class Type extends BaseEntity {
@@ -37,14 +39,13 @@ public class Type extends BaseEntity {
     private String title;
 
     @Getter
-    @JsonManagedReference
     @OneToMany(mappedBy = "type")
-    protected List<Component> components = new ArrayList<Component>();
+    @JsonIgnore
+    protected List<Component> components = new ArrayList<>();
     
     @Getter
-    @JsonManagedReference
     @OneToMany(mappedBy = "type")
-    private List<TypeAttribute> attributes = new ArrayList<TypeAttribute>();
+    private List<TypeAttribute> attributes = new ArrayList<>();
 
     public void addComponent(Component component) {
         this.components.add(component);

@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     services:
@@ -28,6 +27,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup DB service
+      run: |
+        psql -h "$DB_HOST" -d "$DB_NAME" -U "$DB_USER" -a -f "$SQL_FILE"
+      env:
+        SQL_FILE: 'dump.sql'
+        DB_HOST: 'localhost'
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        PGPASSWORD: ${{ secrets.DB_PASS }}
+
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:

@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import lombok.AccessLevel;
@@ -19,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
 @Log4j2
@@ -37,9 +34,8 @@ public class Train extends BaseEntity {
     private String title;
 
     @Getter
-    @JsonManagedReference
     @OneToMany(mappedBy = "train")
-    protected List<Component> components = new ArrayList<Component>();
+    protected List<Component> components = new ArrayList<>();
 
     public void addComponent(Component component) {
         this.components.add(component);
