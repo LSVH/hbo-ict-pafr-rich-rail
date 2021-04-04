@@ -29,5 +29,5 @@ services:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASS:-secret123}
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
       - ./.docker/db/data:/var/lib/postgresql/data

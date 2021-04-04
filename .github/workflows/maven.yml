@@ -29,11 +29,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup DB service
       run: |
-        for f in "$GITHUB_WORKSPACE/$SQL_PATH"; do
-          psql -h "$DB_HOST" -d "$DB_NAME" -U "$DB_USER" -a -f "$f"
-        done
+        psql -h "$DB_HOST" -d "$DB_NAME" -U "$DB_USER" -a -f "$SQL_FILE"
       env:
-        SQL_PATH: 'sql/*.sql'
+        SQL_FILE: 'dump.sql'
         DB_HOST: 'localhost'
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
