@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
 @NoArgsConstructor
@@ -33,6 +34,7 @@ public class Component extends BaseEntity {
 
     @NonNull
     @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "train_id")
     @JsonIgnore
