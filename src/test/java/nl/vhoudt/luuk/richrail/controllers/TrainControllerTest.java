@@ -1,11 +1,10 @@
 package nl.vhoudt.luuk.richrail.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,17 +64,13 @@ public class TrainControllerTest {
 
     @Test
     void canDelete() throws Exception {
-        Integer id = (Integer) this.createDummyTrain("foo").get("id");
+        JSONObject expected = this.createDummyTrain("foo");
+        String resourceUrl = this.url + "/" + expected.getInt("id");
 
-        String beforeDelete = restTemplate.getForEntity(this.url + "/"+ id, String.class).getBody();
-        assertEquals(id, new JSONObject(beforeDelete).get("id"));
-    
-        restTemplate.delete(this.url + "/" + id);
+        restTemplate.delete(resourceUrl);
 
-        String afterDelete = restTemplate.getForEntity(this.url + "/"+ id, String.class).getBody();
-        assertThrows(JSONException.class, () -> {
-            new JSONObject(afterDelete);
-        });
+        String actual = restTemplate.getForEntity(resourceUrl, String.class).getBody();
+        assertNotEquals(expected, actual);
     }
 
     private JSONObject createDummyTrain(String title) throws Exception {
