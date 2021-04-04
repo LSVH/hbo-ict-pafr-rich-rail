@@ -2,6 +2,25 @@
 
 Een applicatie waarmee treinen en de trein componenten mee beheert kunnen worden.
 
+## Installatie
+
+Voordat je begint met het installeren moet je [docker compose](https://docs.docker.com/compose/install/) geïnstalleerd hebben.
+
+1. Na het clonen/downloaden van de repository open je, je terminal en voer je de volgende commando uit:
+  ```
+  docker-compose run --rm app mvn clean install
+  ```
+2. Als de code succesvol gebouwd is en alle testen slagen, dan kan de app gestart worden met de volgende commando:
+  ```
+  docker-compose up -d
+  ```
+3. Binnen enkele seconde zal de applicatie actief zijn, vervolgens kan je een van de genoemde [API calls](#API) uitvoeren met de basis URL:
+  ```
+  http://localhost:8080
+  ```
+
+Check ook de logs in `target/logs`, en gebruik `docker-compose logs -f app` om real-time de logs in te zien. Daarnaast kan de app met `docker.compose down` offline worden gehaald.
+
 ## API
 
 Hierna volgt de API met alle endpoints waarmee de verschillende service aangesproken kunnen worden.
