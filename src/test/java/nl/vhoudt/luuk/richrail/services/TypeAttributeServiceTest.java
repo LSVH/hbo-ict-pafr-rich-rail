@@ -30,13 +30,11 @@ public class TypeAttributeServiceTest {
 
     @Test
     void canSave() throws Exception {
-        String expectedValue = "foo";
-        Integer expectedId = 1;
-        TypeAttribute expected = new TypeAttribute(expectedValue, new Type(), new TypeAttributeKey());
+        TypeAttribute expected = new TypeAttribute("foo", new Type(), new TypeAttributeKey());
 
         when(repository.save(expected)).thenReturn(expected);
 
-        TypeAttribute actual = service.save(expectedValue, expectedId, expectedId);
+        TypeAttribute actual = service.save(expected);
 
         assertEquals(expected.getValue(), actual.getValue());
         verify(repository, times(1)).save(expected);
