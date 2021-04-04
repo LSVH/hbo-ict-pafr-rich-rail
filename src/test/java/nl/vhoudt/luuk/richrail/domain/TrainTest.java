@@ -28,26 +28,4 @@ public class TrainTest {
             new Train(null);
         });
     }
-
-    @Test
-    void canAddComponent() throws Exception {
-        this.initMocks();
-        Train target = new Train("foo");
-
-        target.addComponent(mockedComponent);
-
-        assertEquals(target.getComponents().get(0), mockedComponent);
-    }
-
-    @Test
-    void canRemoveComponent() throws Exception {
-        this.initMocks();
-        Train target = new Train("foo");
-
-        target.addComponent(mockedComponent);
-        assertEquals(target.getComponents().size(), 1);
-
-        target.removeComponent(mockedComponent);
-        assertEquals(target.getComponents().size(), 0);
-    }
 }
