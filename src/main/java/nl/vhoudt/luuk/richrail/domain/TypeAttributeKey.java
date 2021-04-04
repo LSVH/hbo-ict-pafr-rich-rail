@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,7 @@ import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor = @__(@PersistenceConstructor))
+@AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 @Entity
 @Table(name = TypeAttributeKey.TABLE_NAME)
 public class TypeAttributeKey extends BaseEntity {

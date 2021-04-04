@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,7 @@ import nl.vhoudt.luuk.richrail.common.BaseEntity;
 @Log4j2
 @NoArgsConstructor
 @RequiredArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor = @__(@PersistenceConstructor))
+@AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 @Entity
 @Table(name = Train.TABLE_NAME)
 public class Train extends BaseEntity {

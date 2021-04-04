@@ -7,11 +7,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ import lombok.NonNull;
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PACKAGE, onConstructor = @__(@PersistenceConstructor))
+@AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 @JsonIdentityInfo(generator = PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = TypeAttribute.TABLE_NAME)
@@ -29,6 +29,7 @@ public class TypeAttribute extends BaseEntity {
     @NonNull
     @Getter
     @Column(name = "val")
+    @JsonProperty("value")
     private String value;
     
     @NonNull
