@@ -19,10 +19,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
-@Log4j2
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
@@ -45,24 +43,4 @@ public class Type extends BaseEntity {
     @Getter
     @OneToMany(mappedBy = "type")
     private List<TypeAttribute> attributes = new ArrayList<>();
-
-    public void addComponent(Component component) {
-        this.components.add(component);
-        log.info("A component was added to the type: \"" + this.getTitle() + "\".");
-    }
-
-    public void removeComponent(Component component) {
-        this.components.remove(component);
-        log.info("A component was removed from the type: \"" + this.getTitle() + "\".");
-    }
-
-    public void addAttribute(TypeAttribute attribute) {
-        this.attributes.add(attribute);
-        log.info("An attribute was added to the type: \"" + this.getTitle() + "\".");
-    }
-
-    public void removeAttribute(TypeAttribute attribute) {
-        this.attributes.remove(attribute);
-        log.info("An attribute was removed from the type: \"" + this.getTitle() + "\".");
-    }
 }

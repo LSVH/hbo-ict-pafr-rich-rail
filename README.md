@@ -2,6 +2,93 @@
 
 Een applicatie waarmee treinen en de trein componenten mee beheert kunnen worden.
 
+## API
+
+Hierna volgt de API met alle endpoints waarmee de verschillende service aangesproken kunnen worden.
+
+### Train
+
+- Haal een lijst op van alle treinen:
+  ```
+  GET ./trains
+  ```
+- Laad een specifiek trein object met het "id" attribuut:
+  ```
+  GET ./train/{id}
+  ```
+- Maak een nieuwe trein aan:
+  ```
+  POST ./train
+  Content-Type: application/json
+  ---
+  {
+    "title": <string>
+  }
+  ```
+- Verwijder een trein object met het "id" attribuut:
+  ```
+  DELETE ./train/{id}
+  ```
+  
+### Component
+
+- Maak een nieuw component aan:
+  ```
+  POST ./component
+  Content-Type: application/json
+  ---
+  {
+    "spot": <integer>,
+    "train_id": <integer>,
+    "type_id": <integer>
+  }
+  ```
+- Verwijder (of ontkoppel) een bepaald component object met het "id" attribuut:
+  ```
+  DELETE ./component/{id}
+  ```
+- Koppel/wissel een bepaald component object met een bepaalde trein:
+  ```
+  PATCH ./component/{componentId}/train/{trainId}
+  ```
+
+### Type
+
+- Maak een nieuw type aan:
+  ```
+  POST ./type
+  Content-Type: application/json
+  ---
+  {
+    "title": <string>
+  }
+  ```
+
+### Type Attribute
+
+- Maak een nieuw type attribuut aan:
+  ```
+  POST ./type-attribute
+  Content-Type: application/json
+  ---
+  {
+    "value": <string>,
+    "key_id": <integer>,
+    "type_id": <integer>
+  }
+  ```
+### Type Attribute Key
+
+- Maak een nieuw type attribuut sleutel aan:
+  ```
+  POST ./type-attribute-key
+  Content-Type: application/json
+  ---
+  {
+    "title": <string>
+  }
+  ```
+
 ## Functionaliteiten
 
 - [x] Treinen kunnen in verschillende interfaces getoond worden. Bijvoorbeeld in een GUI en/of CLI.
@@ -10,12 +97,12 @@ Een applicatie waarmee treinen en de trein componenten mee beheert kunnen worden
 - [x] Een trein weergeven.
 - [x] Een trein inladen.
 - [x] Bestaande treinen verwijderen.
-- [ ] Een nieuw component type toevoegen.
-- [ ] Een nieuw component aanmaken op basis van een bepaald component type.
-- [ ] Een component kan gekoppeld worden aan een trein.
-- [ ] Een component kan worden losgekoppeld van een trein.
-- [ ] Bij elke handeling moeten logs getoond kunnen worden.
-- [ ] De data wordt gepersisteerd. 
+- [x] Een nieuw component type toevoegen.
+- [x] Een nieuw component aanmaken op basis van een bepaald component type.
+- [x] Een component kan gekoppeld worden aan een trein.
+- [x] Een component kan worden losgekoppeld van een trein.
+- [x] Bij elke handeling moeten logs getoond kunnen worden.
+- [x] De data wordt gepersisteerd. 
 
 ## Klassendiagram
 
@@ -72,6 +159,7 @@ class Component {
   - spot: int
   + getSpot(): int
   + getTrain(): Train
+  + setTrain(): Train
   + getType(): Type
 }
 

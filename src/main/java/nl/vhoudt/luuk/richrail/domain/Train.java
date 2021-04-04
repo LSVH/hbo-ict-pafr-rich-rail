@@ -15,10 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import nl.vhoudt.luuk.richrail.common.BaseEntity;
 
-@Log4j2
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
@@ -35,14 +33,4 @@ public class Train extends BaseEntity {
     @Getter
     @OneToMany(mappedBy = "train")
     protected List<Component> components = new ArrayList<>();
-
-    public void addComponent(Component component) {
-        this.components.add(component);
-        log.info("A component was added to the train: \"" + this.getTitle() + "\".");
-    }
-
-    public void removeComponent(Component component) {
-        this.components.remove(component);
-        log.info("A component was removed from the train: \"" + this.getTitle() + "\".");
-    }
 }

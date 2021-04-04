@@ -28,26 +28,4 @@ public class TypeTest {
             new Type(null);
         });
     }
-
-    @Test
-    void canAddComponent() throws Exception {
-        this.initMocks();
-        Type target = new Type("foo");
-
-        target.addComponent(mockedComponent);
-
-        assertEquals(target.getComponents().get(0), mockedComponent);
-    }
-
-    @Test
-    void canRemoveComponent() throws Exception {
-        this.initMocks();
-        Type target = new Type("foo");
-
-        target.addComponent(mockedComponent);
-        assertEquals(target.getComponents().size(), 1);
-
-        target.removeComponent(mockedComponent);
-        assertEquals(target.getComponents().size(), 0);
-    }
 }

@@ -46,9 +46,7 @@ public class ComponentController {
 
     @DeleteMapping(path = "/component/{componentId}")
     public ResponseEntity<Object> updateTrain(@PathVariable Integer componentId) {
-        Component component = service.findById(componentId);
-        
-        service.delete(component);
+        service.deleteById(componentId);
 
         return ResponseEntity.ok().build();
     }
