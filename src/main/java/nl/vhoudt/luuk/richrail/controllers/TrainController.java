@@ -37,7 +37,9 @@ public class TrainController {
     }
 
     @DeleteMapping("/train/{id}")
-    public void delete(@PathVariable String id) {
-        service.deleteById(Integer.parseInt(id));
+    public ResponseEntity<Object> delete(@PathVariable Integer id) {
+        service.deleteById(id);
+
+        return ResponseEntity.ok().build();
     }
 }
