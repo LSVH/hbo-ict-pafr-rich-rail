@@ -31,10 +31,10 @@ public class TrainController {
     }
 
     @PostMapping(path = "/train")
-    public ResponseEntity<Object> create(@RequestBody Train train) {
-        Train savedTrain = service.save(train);
+    public ResponseEntity<Object> create(@RequestBody Train req) {
+        Train res = service.save(req);
 
-        return ResponseEntity.ok(savedTrain);
+        return ResponseEntity.ok(res);
     }
 
     @DeleteMapping("/train/{id}")
