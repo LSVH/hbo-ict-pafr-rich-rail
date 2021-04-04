@@ -1,7 +1,6 @@
 package nl.vhoudt.luuk.richrail.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,7 @@ public class TrainController {
     }
 
     @GetMapping("/train/{id}")
-    public Optional<Train> read(@PathVariable String id) {
+    public Train read(@PathVariable String id) {
         return service.findById(Integer.parseInt(id));
     }
 
