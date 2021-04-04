@@ -33,7 +33,7 @@ public class TypeControllerTest {
     }
 
     @Test
-    Integer canCreate() throws Exception {
+    void canCreate() throws Exception {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         JSONObject expected = new JSONObject().put("title", "foo");
@@ -43,7 +43,5 @@ public class TypeControllerTest {
 
         assertEquals(expected.get("title"), actual.get("title"));
         assertNotNull(actual.get("id"));
-
-        return (Integer) actual.get("id");
     }
 }
